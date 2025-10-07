@@ -1,13 +1,14 @@
 from flask import Flask, request, render_template, redirect, url_for
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
 db_config = {
-    'host': 'server-bd-cn1.mysql.database.azure.com',
-    'user': 'useradmin',
+    'host': 'p1cnkelvyn.mysql.database.azure.com',
+    'user': 'userdb',
     'password': 'admin@123',
-    'database': 'locadora_db_kelvyn'
+    'database': 'locadora_db'
 }
 
 def get_db_connection():
@@ -221,4 +222,5 @@ def setup_database():
 
 if __name__ == '__main__':
     setup_database()
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
