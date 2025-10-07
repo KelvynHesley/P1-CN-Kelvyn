@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Gerenciamento de Clientes</h2>
+    <a href="{{ url_for('formulario_cliente') }}" class="btn-add">Adicionar Novo Cliente</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in clientes %}
+            <tr>
+                <td>{{ c.nome }}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.telefone }}</td>
+                <td>
+                    <a href="{{ url_for('formulario_cliente', id=c.id) }}" class="action-link">Editar</a>
+                    <a href="{{ url_for('deletar_cliente', id=c.id) }}" class="action-link" onclick="return confirm('Tem certeza?')">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

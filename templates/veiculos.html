@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Gerenciamento de Veículos</h2>
+    <a href="{{ url_for('formulario_veiculo') }}">Adicionar Novo Veículo</a>
+    <table border="1" style="width:100%; margin-top: 1em;">
+        <tr>
+            <th>Marca</th> <th>Modelo</th> <th>Ano</th> <th>Placa</th> <th>Disponível</th> <th>Ações</th>
+        </tr>
+        {% for v in veiculos %}
+        <tr>
+            <td>{{ v.marca }}</td> <td>{{ v.modelo }}</td> <td>{{ v.ano }}</td> <td>{{ v.placa }}</td>
+            <td>{{ 'Sim' if v.disponibilidade else 'Não' }}</td>
+            <td>
+                <a href="{{ url_for('formulario_veiculo', id=v.id) }}">Editar</a>
+                <a href="{{ url_for('deletar_veiculo', id=v.id) }}" onclick="return confirm('Tem certeza?')">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

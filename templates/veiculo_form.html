@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ 'Editar' if veiculo.id else 'Adicionar' }} Veículo</h2>
+    <form method="post">
+        Marca: <input type="text" name="marca" value="{{ veiculo.marca or '' }}" required><br>
+        Modelo: <input type="text" name="modelo" value="{{ veiculo.modelo or '' }}" required><br>
+        Ano: <input type="number" name="ano" value="{{ veiculo.ano or '' }}" required><br>
+        Placa: <input type="text" name="placa" value="{{ veiculo.placa or '' }}" required><br>
+        Disponível: <input type="checkbox" name="disponibilidade" {{ 'checked' if veiculo.disponibilidade }}><br>
+        <input type="submit" value="Salvar">
+    </form>
+{% endblock %}

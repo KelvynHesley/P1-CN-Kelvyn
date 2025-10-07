@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Gerenciamento de Locações</h2>
+    <a href="{{ url_for('formulario_locacao') }}">Nova Locação</a>
+    <table border="1" style="width:100%; margin-top: 1em;">
+        <tr>
+            <th>Cliente</th> <th>Veículo</th> <th>Placa</th> <th>Início</th> <th>Fim</th> <th>Valor</th> <th>Ações</th>
+        </tr>
+        {% for l in locacoes %}
+        <tr>
+            <td>{{ l.cliente }}</td> <td>{{ l.veiculo }}</td> <td>{{ l.placa }}</td>
+            <td>{{ l.data_inicio }}</td> <td>{{ l.data_fim }}</td> <td>{{ l.valor }}</td>
+            <td>
+                <a href="{{ url_for('cancelar_locacao', id=l.id) }}" onclick="return confirm('Tem certeza?')">Cancelar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

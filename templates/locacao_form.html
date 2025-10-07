@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Nova Locação</h2>
+    <form method="post">
+        Cliente: 
+        <select name="id_cliente" required>
+            {% for c in clientes %}
+            <option value="{{ c.id }}">{{ c.nome }}</option>
+            {% endfor %}
+        </select><br>
+        Veículo: 
+        <select name="id_veiculo" required>
+            {% for v in veiculos %}
+            <option value="{{ v.id }}">{{ v.modelo }} - {{ v.placa }}</option>
+            {% endfor %}
+        </select><br>
+        Data de Início: <input type="date" name="data_inicio" required><br>
+        Data de Fim: <input type="date" name="data_fim" required><br>
+        Valor (R$): <input type="text" name="valor" required><br>
+        <input type="submit" value="Salvar Locação">
+    </form>
+{% endblock %}
